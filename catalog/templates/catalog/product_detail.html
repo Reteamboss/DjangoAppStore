@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>{{product.title}} </h1>
+<img src="{{ product.image.url }}" width="120">
+<div class="price">{{ product.price }} руб.</div>
+  <p><strong>Категория: </strong>{{ product.category }}</p>
+  <p><strong>Диагональ: </strong>{{ product.display }}</p>
+  <p><strong>Цвет: </strong>{{ product.color }}</p>
+  <p><strong>Память: </strong>{{ product.memory }}</p>
+  <p><strong>Описание: </strong>{{ product.description }}</p>
+   {% include 'add_to_cart.html' %}
+</form>
+
+
+{% endblock %}

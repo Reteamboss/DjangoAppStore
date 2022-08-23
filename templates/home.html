@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+
+
+{% block content %}
+<h1> Главная страница</h1>
+<p>Добро пожаловать в <em>Мир книг</em>, Это очень простой веб-сайт, написанный на джанго</p>
+<form action="{% url 'search:index' %}" class="navbar-form navbar-left" method="get">
+    <div class="input-group">
+        <input id="search" name="q" type="text" class="form-control" placeholder="Поиск">
+        <span class="input-group-btn">
+            <button type="submit" class="btn btn-default">Search</button>
+        </span>
+    </div>
+</form>
+<h2>Динамический контент</h2>
+<p>База данных сайта Мир книг содержит следующее количество записей</p>
+<ul>
+    <li><strong>Количество книг: </strong> </li>
+    <li><strong>Количество экземпляров книг: </strong> </li>
+    <li><strong>Количество  экземпляров книг в заказе: </strong> </li>
+    <li><strong>Количество авторов книг: </strong> </li>
+</ul>
+<p>Количество посещений данной старницы =  </p>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Список продуктов по результатам поиска</h1>
+{% if search_list %}
+<ul>
+    {% for product in search_list %}
+    <li>
+        <img src="{{ product.image.url }}" width="120">
+        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>({{ product.category }}, {{ product.id }}, {{ product.get_absolute_url }})
+    </li>
+    {% endfor %}
+</ul>
+    {% else %}
+        <div class="alert alert-dark" role="alert">
+            <p>В базе нет данных!</p>
+        </div>
+    {% endif %}
+{% endblock %}

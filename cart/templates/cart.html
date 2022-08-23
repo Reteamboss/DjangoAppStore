@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container mt-3">
+
+
+    {% if not cart %}
+
+    <div class="col-lg-6 col-md-9 col-sm-12 order-md-2 mb-4 mx-auto">
+        <h4 class="text-muted">В корзине пока что нет товаров</h4>
+    </div>
+
+    {% else %}
+
+    <div class="d-flex flex-row">
+        <div class="p-2">
+            <div>
+                <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Ваша корзина</span>
+                    <span class="text-muted">Общая сумма: {{ total_price }} руб.</span>
+                    <span class="badge badge-secondary badge-pill">Позиций в корзине: {{ cart|length }} </span>
+                </h4>
+                <ul class="list-group mb-3">
+
+                    {% for value in cart.values %}
+
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div class="d-flex flex-row">
+
+                            <div class="p-2"><img src="{{ value.product.image }}" width="120"></div>
+                            <div class=" p-2 d-flex flex-column">
+                                <div class="p-2"><h6>{{ value.product.title}}</h6></div>
+                                <div class="p-2"><h5>{{ value.product.price }} руб.</h5></div>
+                                <div class="p-2"><small>{{ value.product.description }}</small></div>
+                                <a href="">Убрать из корзины</a>
+                            </div>
+                            </s>
+                        </div>
+                        <span class="text-muted">Количество: {{ value.quantity }}</span>
+
+
+                    </li>
+                    {% endfor %}
+
+                </ul>
+
+
+            </div>
+        </div>
+        <div class="p-2">
+
+            <ul class="list-group mb-3">
+                <span class="text-muted"><h4>Детали заказа: </h4></span>
+                <span class="text-muted"><h4>Получатель: </h4></span>
+                <form class="card p-2" action="{% url 'cart:order' %}" method="post">
+                    {% csrf_token %}
+                    <p>
+                        <label>Введите имя: </label>
+                        <input type="text" name="first_name"/>
+                    </p>
+                    <p>
+                        <label>Введите фамилию: </label>
+                        <input type="text" name="last_name"/>
+                    </p>
+                    <p>
+                        <label>Телефон для связи: </label>
+                        <input type="text" name="phone"/>
+                    </p>
+
+
+                    <p>Выберите способ доставки</p>
+                    <div>
+                        <input type="radio" id="contactChoice1"
+                               name="type1" value="Самовывоз">
+                        <label for="contactChoice1">Самовывоз</label>
+
+                        <input type="radio" id="contactChoice2"
+                               name="type1" value="Доставка">
+                        <label for="contactChoice2">Доставка курьером</label>
+
+                        <span class="text-muted"><h4>Адрес доставки: </h4></span></p>
+
+                        <p>
+                            <label>Город: </label>
+                            <input type="text" name="city"/>
+                        </p>
+                        <p>
+                            <label>Улица: </label>
+                            <input type="text" name="street"/>
+                        </p>
+                        <p>
+                            <label>Дом: </label>
+                            <input type="text" name="house"/>
+                        </p>
+                        <p>
+                            <label>Квартира: </label>
+                            <input type="text" name="flat"/>
+                        </p>
+                        <p>
+                            <label>Дата доставки: </label>
+                            <input type="date" name="date_of_delivery"/>
+                        </p>
+
+
+                        <p>Выберите способ оплаты: </p>
+                        <div>
+                            <input type="radio" id="contactChoice3"
+                                   name="type2" value="Наличные">
+                            <label for="contactChoice1">Наличными</label>
+
+                            <input type="radio" id="contactChoice4"
+                                   name="type2" value="Карта курьеру">
+                            <label for="contactChoice2">Картой курьеру</label>
+                            <button type="submit" class="btn btn-secondary">Заказать</button>
+                            <a class="btn btn-secondary" role="button" href="{% url 'products' %}">Продолжить покупки</a>
+                </form>
+
+                        </div>
+
+
+                    </div>
+
+
+            </ul>
+
+        </div>
+    </div>
+    {% endif %}
+    {% if messages %}
+    {% for message in messages %}
+    <p class="text-success text-center">{{ message }}</p>
+    {% endfor %}
+    {% endif %}
+
+</div>
+{% endblock %}
