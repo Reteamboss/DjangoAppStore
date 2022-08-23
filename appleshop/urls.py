@@ -27,6 +27,7 @@ from catalog import views
 
 urlpatterns = [
 
+    path('register/', include(('account.urls','account')), name='register'),
     path('', views.index, name='index',),
     path('admin/', admin.site.urls),
     url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
@@ -34,8 +35,7 @@ urlpatterns = [
     url(r'^product/(?P<pk>\d+)$', views.ShowDetail.as_view(), name='product-detail',),
     url(r'^category/(?P<pk>\d+)$', views.CategoryListView.as_view(), name='category',),
     url(r'^search/', include('search.urls')),
-    path('account/', include('django.contrib.auth.urls')),
-    path('register/', include(('account.urls','account')), name='register'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
@@ -44,3 +44,8 @@ if settings.DEBUG:
     urlpatterns += [
         path('__debug__/', include(debug_toolbar.urls)),
     ]
+
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+
+]
