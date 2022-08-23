@@ -4,8 +4,8 @@
 
 
 {% block content %}
-<h1> Главная страница</h1>
-<p>Добро пожаловать в <em>Мир книг</em>, Это очень простой веб-сайт, написанный на джанго</p>
+<h1> Магазин техники Apple</h1>
+<p>Добро пожаловать в <em>Apple Store</em>, тут вы можете найти необходимый вам телефон или многое другое...</p>
 <form action="{% url 'search:index' %}" class="navbar-form navbar-left" method="get">
     <div class="input-group">
         <input id="search" name="q" type="text" class="form-control" placeholder="Поиск">
@@ -14,13 +14,14 @@
         </span>
     </div>
 </form>
-<h2>Динамический контент</h2>
-<p>База данных сайта Мир книг содержит следующее количество записей</p>
+<p>Введите в строке поиска интересующую модель, или цвет и т.д (Пример: Iphone, 64gb, Space Gray)</p>
+<h5>Мы предлагаем:</h5>
 <ul>
-    <li><strong>Количество книг: </strong> </li>
-    <li><strong>Количество экземпляров книг: </strong> </li>
-    <li><strong>Количество  экземпляров книг в заказе: </strong> </li>
-    <li><strong>Количество авторов книг: </strong> </li>
+
+    <li><strong>Качественную технику </strong> </li>
+    <li><strong>Гарантию 1 год </strong> </li>
+    <li><strong>Бесплатная доставка </strong> </li>
+    <li><strong>Замену старой техники на новую </strong> </li>
 </ul>
-<p>Количество посещений данной старницы =  </p>
+
 {% endblock %}

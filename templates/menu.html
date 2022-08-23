@@ -26,6 +26,12 @@
         </a>
 
       </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="{% url 'support:support' %}">
+          Поддержка
+        </a>
+
+      </li>
       </li>
 
     </ul>
@@ -33,7 +39,7 @@
 
 
     {% if user.is_authenticated %}
-        <div class="text-success">Пользователь: {{ user.get_username }}</div>
+        <a href="{% url 'personal_account:personal_account' %}" class="text-success">Пользователь: {{ user.get_username }}</a>
     {% endif %}
 
     <a class="btn btn-sm align-middle btn-outline-secondary my-2 my-sm-0" role="button" href="{% url 'cart:cart' %}">Корзина</a>

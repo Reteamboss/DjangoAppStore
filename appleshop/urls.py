@@ -26,8 +26,9 @@ from django.conf.urls import url
 from catalog import views
 
 urlpatterns = [
-
+    url(r'^support/', include(('support.urls', 'support'), namespace='support')),
     path('register/', include(('account.urls','account')), name='register'),
+    path('personal_account/', include(('personal_account.urls','personal_account')), name='personal_account'),
     path('', views.index, name='index',),
     path('admin/', admin.site.urls),
     url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),

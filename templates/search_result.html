@@ -6,7 +6,7 @@
     {% for product in search_list %}
     <li>
         <img src="{{ product.image.url }}" width="120">
-        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>({{ product.category }}, {{ product.id }}, {{ product.get_absolute_url }})
+        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
     </li>
     {% endfor %}
 </ul>

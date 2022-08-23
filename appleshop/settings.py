@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'support.apps.SupportConfig',
     'catalog.apps.CatalogConfig',
     'cart.apps.CartConfig',
     'account.apps.AccountConfig',
     'article.apps.ArticleConfig',
+    'personal_account.apps.PersonalAccountConfig',
 
     'mptt'
 ]
@@ -153,4 +155,6 @@ LOGIN_REDIRECT_URL = '/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CART_SESSION_ID = 'cart'
 
+RECIPIENTS_EMAIL = ['applestoredjango@mail.ru']
+DEFAULT_FROM_EMAIL = 'applestoredjango@mail.ru'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
