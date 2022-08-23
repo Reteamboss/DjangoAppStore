@@ -2,35 +2,28 @@
 
 
 
-
-
-{% block form %}
-    <div>
+{% block content %}
 {% if user.is_anonymous %}
+<form method="post" action="{% url 'account:register' %}">
 
-
-<form class="form-signin" method="post" action="{% url 'register' %}">
-
-  <input type="hidden" name="next" value="">
-  <img class="mb-4" src="/static/logo.svg" alt="" width="72" height="72">
 
     {% csrf_token %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Создать аккаунт</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
+    <h1>Создать аккаунт</h1>
+    <label for="inputEmail">Email</label>
     <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email"
-         value="" required="" autofocus="" data-cip-id="inputEmail">
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Пароль"
-         name="password" required="" data-cip-id="inputPassword">
-    <input type="password" id="inputPassword" class="form-control" placeholder="Повторите пароль"
-         name="password2" required="" data-cip-id="inputPassword">
+           value="" required="" autofocus="" data-cip-id="inputEmail">
+    <label for="inputPassword">Password</label>
+    <input type="password" id="inputPassword" placeholder="Пароль"
+           name="password" required="" data-cip-id="inputPassword">
+    <input type="password" id="inputPassword" placeholder="Повторите пароль"
+           name="password2" required="" data-cip-id="inputPassword">
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Создать</button>
+    <button class="btn" type="submit">Создать</button>
 </form>
-    {% else %}
-    <p class="text-success">{{ user|upper}}, Вы уже зарегистрированы. <br> <a href="{{ '/' }}">Перейти на главную</a></p>
-    {% endif %}
-    <p class="mt-5 mb-3 text-muted">© Просто магазин 2020</p>
-</div>
+{% else %}
+<p class="text-success">{{ user|upper}}, Вы уже зарегистрированы. <br> <a href="{{ '/' }}">Перейти на главную</a></p>
+{% endif %}
+<p class="mt-5 mb-3 text-muted">Apple Store</p>
+
 {% endblock %}
