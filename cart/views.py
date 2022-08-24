@@ -44,7 +44,7 @@ def view_cart(request):
 
     if cart:
         products = {}
-        product_list = Product.objects.filter(pk__in=cart.keys()).values('id', 'title', 'description','image','price')
+        product_list = Product.objects.filter(pk__in=cart.keys()).values('id', 'title', 'description','image_url','price')
 
         for product in product_list:
             products[str(product['id'])] = product
@@ -85,6 +85,7 @@ def view_order(request):
             order.phone = request.POST.get("phone")
             order.paymentmethod = request.POST.get("type1")
             order.deliverytype = request.POST.get("type2")
+            order.dateofdelivery = request.POST.get("dateofdelivery")
 
 
 
@@ -95,8 +96,7 @@ def view_order(request):
 
             total_price = []
             products = {}
-            product_list = Product.objects.filter(pk__in=cart.keys()).values('id', 'title', 'description', 'image',
-                                                                             'price')
+            product_list = Product.objects.filter(pk__in=cart.keys()).values('id', 'title', 'description', 'image_url','price')
 
             for product in product_list:
                 products[str(product['id'])] = product
@@ -121,13 +121,11 @@ def view_order(request):
 
     return render(request,'order_success.html', context={'order': order})
 
-def delete_product(request):
-    try:
-        product = Product.objects.get(id=id)
-        product.delete()
-        return HttpResponseRedirect('/cart/')
-    except Product.DoesNotExist:
-        return HttpResponseNotFound("<h2>Продукт не найден</h2>")
+def delete_all(request):
+    request.session['cart'] = {}
+    request.session.modified = True
+    return redirect('cart.html')
+
 
 
 

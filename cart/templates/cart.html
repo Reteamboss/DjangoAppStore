@@ -29,12 +29,12 @@
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                         <div class="d-flex flex-row">
 
-                            <div class="p-2"><img src="{{ value.product.image }}" width="120"></div>
+                            <div class="p-2"><img src="{{ value.product.image_url }}" width="120"></div>
                             <div class=" p-2 d-flex flex-column">
                                 <div class="p-2"><h6>{{ value.product.title}}</h6></div>
                                 <div class="p-2"><h5>{{ value.product.price }} руб.</h5></div>
                                 <div class="p-2"><small>{{ value.product.description }}</small></div>
-                                <a href="">Убрать из корзины</a>
+
                             </div>
                             </s>
                         </div>
@@ -45,7 +45,11 @@
                     {% endfor %}
 
                 </ul>
-
+                <form action=""
+                      method="post">
+                    {% csrf_token %}
+                    <input type="submit" class="btn btn-secondary" value="Очистить корзину">
+                </form>
 
             </div>
         </div>
@@ -100,7 +104,7 @@
                         </p>
                         <p>
                             <label>Дата доставки: </label>
-                            <input type="date" name="date_of_delivery"/>
+                            <input type="date" name="dateofdelivery"/>
                         </p>
 
 
@@ -114,25 +118,26 @@
                                    name="type2" value="Карта курьеру">
                             <label for="contactChoice2">Картой курьеру</label>
                             <button type="submit" class="btn btn-secondary">Заказать</button>
-                            <a class="btn btn-secondary" role="button" href="{% url 'products' %}">Продолжить покупки</a>
+                            <a class="btn btn-secondary" role="button" href="{% url 'products' %}">Продолжить
+                                покупки</a>
                 </form>
 
-                        </div>
-
-
-                    </div>
-
-
-            </ul>
-
         </div>
+
+
     </div>
-    {% endif %}
-    {% if messages %}
-    {% for message in messages %}
-    <p class="text-success text-center">{{ message }}</p>
-    {% endfor %}
-    {% endif %}
+
+
+    </ul>
+
+</div>
+</div>
+{% endif %}
+{% if messages %}
+{% for message in messages %}
+<p class="text-success text-center">{{ message }}</p>
+{% endfor %}
+{% endif %}
 
 </div>
 {% endblock %}

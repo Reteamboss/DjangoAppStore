@@ -14,7 +14,7 @@ admin.site.register(Category, CustomMPTTModelAdmin)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category','memory','color','price','quantity')
+    list_display = ('title', 'category','memory','color','price','quantity','image_url')
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title',)
     list_filter = ('category','color','memory')
@@ -35,7 +35,7 @@ class MemoryAdmin(admin.ModelAdmin):
     # list_filter = ('due_back','status')
 
 @admin.register(Display)
-class DisplauAdmin(admin.ModelAdmin):
+class DisplayAdmin(admin.ModelAdmin):
     list_display = ('id','display')
     # list_filter = ('due_back','status')
 

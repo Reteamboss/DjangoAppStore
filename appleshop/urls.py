@@ -34,8 +34,8 @@ urlpatterns = [
     url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
     url(r'^products/$', views.ProductListView.as_view(), name='products',),
     url(r'^product/(?P<pk>\d+)$', views.ShowDetail.as_view(), name='product-detail',),
-    url(r'^category/(?P<pk>\d+)$', views.CategoryListView.as_view(), name='category',),
     url(r'^search/', include('search.urls')),
+    path('catalog/', include(('catalog.urls', 'catalog'), namespace='catalog')),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -35,7 +35,12 @@ class Category(MPTTModel):
     def get_absolute_url(self):
         return reverse(
             'catalog:product_list_by_category',
-            args=[self.slug])
+            kwargs={'category_slug': self.slug}
+        )
+    # def get_absolute_url(self):
+    #     return reverse(
+    #         'catalog:products',
+    #         kwargs={'category_slug': self.slug})
 
 class Color(models.Model):
     color = models.CharField(
@@ -89,6 +94,12 @@ class Product(models.Model):
         verbose_name='Изображение',
     )
 
+    image_url = models.CharField(
+        max_length=255,
+        verbose_name='Адрес картинки',
+        null=True,
+    )
+
     memory = models.ForeignKey(
         Memory,
         on_delete=models.PROTECT,
@@ -119,7 +130,16 @@ class Product(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('product-detail',args=[str(self.id)])
+        return reverse(
+            'catalog:product_detail',
+            kwargs={
+                'product_slug': self.slug,
+                'category_slug': self.category.slug
+            }
+        )
+
+    # def get_absolute_url(self):
+    #     return reverse('product-detail',args=[str(self.id)])
 
 
 class Review(models.Model):

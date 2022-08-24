@@ -17,7 +17,7 @@ def personal_account_view(request):
     for order in order_list:
         pk.append(order['products'])
 
-    products = Product.objects.filter(pk__in=pk).values('title')
+    products = Product.objects.filter(pk__in=pk).values('title','image_url')
 
     context['products'] = products
 
