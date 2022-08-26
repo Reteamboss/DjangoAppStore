@@ -75,3 +75,5 @@ class ShowDetail(generic.DetailView):
 def index(request):
     return render(request, 'home.html')
 
+
+

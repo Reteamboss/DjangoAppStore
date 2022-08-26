@@ -32,8 +32,6 @@ urlpatterns = [
     path('', views.index, name='index',),
     path('admin/', admin.site.urls),
     url(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
-    url(r'^products/$', views.ProductListView.as_view(), name='products',),
-    url(r'^product/(?P<pk>\d+)$', views.ShowDetail.as_view(), name='product-detail',),
     url(r'^search/', include('search.urls')),
     path('catalog/', include(('catalog.urls', 'catalog'), namespace='catalog')),
 

@@ -30,5 +30,6 @@ class ESearchView(generic.ListView):
                 context['search_list'] = current_page.page(1)
             except EmptyPage:
                 context['search_list'] = current_page.page(current_page.num_pages)
+            context['question']=question
 
         return render(request,template_name = self.template_name, context = context)

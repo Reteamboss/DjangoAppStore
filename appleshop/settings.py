@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'catalog.apps.CatalogConfig',
     'cart.apps.CartConfig',
     'account.apps.AccountConfig',
-    'article.apps.ArticleConfig',
     'personal_account.apps.PersonalAccountConfig',
 
     'mptt'

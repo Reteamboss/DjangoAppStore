@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Список продуктов по результатам поиска</h1>
+<h1>Список продуктов по результатам запроса "{{ question }}"</h1>
 {% if search_list %}
 <ul>
     {% for product in search_list %}

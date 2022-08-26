@@ -122,9 +122,10 @@ def view_order(request):
     return render(request,'order_success.html', context={'order': order})
 
 def delete_all(request):
-    request.session['cart'] = {}
-    request.session.modified = True
-    return redirect('cart.html')
+    if request.method == 'POST':
+        request.session['cart'] = {}
+        request.session.modified = True
+        return render(request,'cart_success.html')
 
 
 
