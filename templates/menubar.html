@@ -1,7 +1,7 @@
 {% load static %}
 {% load catalog_extras %}
 
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark sticky-top bg-dark">
     <a class="navbar-brand" href="{% url 'index' %}">Apple Store</a>
     <img src="{% static 'apple.svg' %}" alt="" width="40" height="40">
     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -17,7 +17,7 @@
             <li>{% include 'catalog/catalog_menu.html' %}</li></ul>
 
         {% if user.is_authenticated %}
-        <a href="{% url 'personal_account:personal_account' %}" class="text-success">Пользователь: {{ user.get_username }}</a>
+        <a href="{% url 'personal_account:personal_account_index' %}" class="text-success">Пользователь: {{ user.get_username }}</a>
         {% endif %}
 
         <a class="btn btn-sm align-middle btn-outline-secondary my-2 my-sm-0" role="button"

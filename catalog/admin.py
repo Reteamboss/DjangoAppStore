@@ -1,7 +1,7 @@
 from django.contrib import admin
 from mptt.admin import MPTTModelAdmin
 
-from catalog.models import Category, Product, Color, Display, Memory, Review, Quantity
+from catalog.models import Category, Product, Color, Display, Memory, Review
 
 
 class CustomMPTTModelAdmin(MPTTModelAdmin):
@@ -14,7 +14,7 @@ admin.site.register(Category, CustomMPTTModelAdmin)
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category','memory','color','price','quantity','image_url')
+    list_display = ('title', 'category','memory','color','price','quantity')
     prepopulated_fields = {'slug': ('title',)}
     search_fields = ('title',)
     list_filter = ('category','color','memory')
@@ -37,10 +37,5 @@ class MemoryAdmin(admin.ModelAdmin):
 @admin.register(Display)
 class DisplayAdmin(admin.ModelAdmin):
     list_display = ('id','display')
-    # list_filter = ('due_back','status')
-
-@admin.register(Quantity)
-class QuantityAdmin(admin.ModelAdmin):
-    list_display = ('id','product','quantity')
     # list_filter = ('due_back','status')
 

@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div class="alert alert-success" role="alert">
+<p><h1>Корзина успешно очищена!</h1></p>
+<a href="{% url 'index' %}">Продолжить покупки</a>
+</div>
+{% endblock %}

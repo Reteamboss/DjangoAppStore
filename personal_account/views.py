@@ -3,7 +3,7 @@ from account.models import User
 from cart.models import Order, ProductsInOrder
 from catalog.models import Product
 
-def personal_account_view(request):
+def personal_account_orders_view(request):
 
 
     context = {}
@@ -13,19 +13,16 @@ def personal_account_view(request):
 
 
     context['order_list'] = order_list
-    pk = []
+    prodlist = []
     for order in order_list:
-        pk.append(order['products'])
+        prod = Product.objects.get(pk=order['products'])
+        prodlist.append(prod)
 
-    products = Product.objects.filter(pk__in=pk).values('title','image_url')
+    context['prodlist'] = prodlist
+    return render(request, 'personal_account2.html', context)
 
-    context['products'] = products
+def personal_account_index(request):
+    return render(request, 'personal_account.html')
 
-
-
-
-
-
-    return render(request, 'personal_account.html', context)
 
 

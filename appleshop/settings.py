@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'account.apps.AccountConfig',
     'personal_account.apps.PersonalAccountConfig',
+    'bootstrap3',
 
     'mptt'
 ]

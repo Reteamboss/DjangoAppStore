@@ -77,7 +77,7 @@ class Product(models.Model):
     price = models.DecimalField(
         max_digits=19,
         decimal_places=0,
-        verbose_name='Цена',
+        verbose_name='Цена (руб.)',
 
     )
 
@@ -103,7 +103,7 @@ class Product(models.Model):
     memory = models.ForeignKey(
         Memory,
         on_delete=models.PROTECT,
-        verbose_name='Память',
+        verbose_name='Память (гб.)',
     )
 
     color = models.ForeignKey(
@@ -115,7 +115,12 @@ class Product(models.Model):
     display = models.ForeignKey(
         Display,
         on_delete=models.PROTECT,
-        verbose_name='Диагональ',
+        verbose_name='Диагональ(дюйм.)',
+    )
+
+    quantity = models.IntegerField(
+        verbose_name='В наличии(ед.)',
+        null=True
     )
 
 
@@ -170,23 +175,6 @@ class Review(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class Quantity(models.Model):
-
-    product = models.ForeignKey(
-        Product,
-        related_name='quantity',
-        on_delete=models.PROTECT,
-        verbose_name='Количество'
-    )
-
-    quantity = models.IntegerField(
-        verbose_name='Количество'
-    )
-
-    def __str__(self):
-        return str(self.product)
 
 
 

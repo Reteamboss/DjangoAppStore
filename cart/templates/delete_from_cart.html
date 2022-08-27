@@ -1,0 +1,4 @@
+<form action="{% url 'cart:delete_from_cart' %}" method="post">
+    {% csrf_token %}
+    <input type="submit"  value="Очистить корзину">
+</form>

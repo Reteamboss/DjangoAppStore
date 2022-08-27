@@ -21,7 +21,7 @@ class ESearchView(generic.ListView):
             # Это важно для корректной работы пагинации
             context['last_question'] = '?q=%s' % question
 
-            current_page = Paginator(search_titles, 10)
+            current_page = Paginator(search_titles, 7)
 
             page = request.GET.get('page')
             try:

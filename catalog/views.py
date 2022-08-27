@@ -13,7 +13,7 @@ class ProductListView(generic.ListView):
 
 
     context_object_name = 'products_list'
-    paginate_by = 11
+    paginate_by = 9
 
     def get_queryset(self):
         self.category = get_object_or_404(
