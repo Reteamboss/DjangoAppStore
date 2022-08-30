@@ -35,6 +35,13 @@ class User(AbstractUser):
 
     username = None
     email = models.EmailField(_('email address'), unique=True)
+    first_name = models.CharField(max_length=64, verbose_name='Имя получателя', null=True)
+    last_name = models.CharField(max_length=64, verbose_name='Фамилия получателя', null=True)
+    city = models.CharField(max_length=64, verbose_name='Город', null=True)
+    street = models.CharField(max_length=64, verbose_name='Улица', null=True)
+    house = models.CharField(max_length=64, verbose_name='№ дома', null=True)
+    flat = models.CharField(max_length=64, verbose_name='№ квартиры', null=True)
+    phone = models.CharField(max_length=64, verbose_name='Номер для связи', null=True)
 
 
     objects = UserManager()

@@ -8,6 +8,8 @@ from django.http import HttpResponseRedirect, HttpResponseNotFound
 from account.models import User
 from cart.models import Order, ProductsInOrder
 from catalog.models import Product
+from django.core.mail import send_mail, BadHeaderError
+from appleshop.settings import RECIPIENTS_EMAIL, DEFAULT_FROM_EMAIL
 
 
 def add_to_cart(request):
@@ -118,6 +120,9 @@ def view_order(request):
             request.session.modified = True
 
             messages.success(request, 'Заказ принят')
+            message = f' Ваш заказ № {order.id}\n Дата заказа: {order.created},\n Общая стоимость: {order.total_price}\n Дата доставки: {order.dateofdelivery}'
+            send_mail(f'от AppleStore', message,
+                      DEFAULT_FROM_EMAIL, RECIPIENTS_EMAIL)
 
     return render(request,'order_success.html', context={'order': order})
 

@@ -1,7 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
 from account.models import User
 from cart.models import Order, ProductsInOrder
 from catalog.models import Product
+from .forms import CustomerInfo
+from django.http import HttpResponseRedirect
 
 def personal_account_orders_view(request):
 
@@ -19,10 +22,35 @@ def personal_account_orders_view(request):
         prodlist.append(prod)
 
     context['prodlist'] = prodlist
-    return render(request, 'personal_account2.html', context)
+    return render(request, 'personal_orders.html', context)
 
-def personal_account_index(request):
-    return render(request, 'personal_account.html')
+def personal_info(request):
+    context = {}
+    user_id = request.user.pk
+    customer = User.objects.get(pk=user_id)
+    context['customer'] = customer
+    return render(request, 'personal_info.html',context=context)
+
+
+def add_info(request):
+    user_id = request.user.pk
+    customer = User.objects.get(pk=user_id)
+    if request.method == "POST":
+        customer.first_name = request.POST.get('first_name')
+        customer.last_name = request.POST.get('last_name')
+        customer.phone = request.POST.get('phone')
+        customer.city = request.POST.get('city')
+        customer.street = request.POST.get('street')
+        customer.house = request.POST.get('house')
+        customer.flat = request.POST.get('flat')
+        customer.save()
+        return HttpResponseRedirect('/personal_info/')
+    else:
+        return render(request,'add_info.html',{'customer': customer})
+
+
+
+
 
 
 
