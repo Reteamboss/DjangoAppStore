@@ -6,6 +6,7 @@ from catalog.models import Product
 from .forms import CustomerInfo
 from django.http import HttpResponseRedirect
 
+
 def personal_account_orders_view(request):
 
 
@@ -26,27 +27,28 @@ def personal_account_orders_view(request):
 
 def personal_info(request):
     context = {}
-    user_id = request.user.pk
-    customer = User.objects.get(pk=user_id)
-    context['customer'] = customer
+    user = request.user
+    context['user'] = user
     return render(request, 'personal_info.html',context=context)
 
 
-def add_info(request):
+def change_info(request):
     user_id = request.user.pk
-    customer = User.objects.get(pk=user_id)
+    user = User.objects.get(pk=user_id)
+
+    customerform = CustomerInfo()
     if request.method == "POST":
-        customer.first_name = request.POST.get('first_name')
-        customer.last_name = request.POST.get('last_name')
-        customer.phone = request.POST.get('phone')
-        customer.city = request.POST.get('city')
-        customer.street = request.POST.get('street')
-        customer.house = request.POST.get('house')
-        customer.flat = request.POST.get('flat')
-        customer.save()
-        return HttpResponseRedirect('/personal_info/')
+        user.first_name = request.POST.get('first_name')
+        user.last_name = request.POST.get('last_name')
+        user.phone = request.POST.get('phone')
+        user.city = request.POST.get('city')
+        user.street = request.POST.get('street')
+        user.house = request.POST.get('house')
+        user.flat = request.POST.get('flat')
+        user.save()
+        return HttpResponseRedirect('/')
     else:
-        return render(request,'add_info.html',{'customer': customer})
+        return render(request,'change_info.html',{'user': user,'form':customerform})
 
 
 

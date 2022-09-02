@@ -3,6 +3,8 @@
 
 
 {% block content %}
-    <h1>Добро пожаловать! {{ new_user.first_name }}!</h1>
-    <p>Выбрать товары: <a href="{% url "login" %}">Войти</a>.</p>
+<div class="alert alert-success" role="alert">
+    <h1>Вы успешно зарегистрировались! </h1>
+    <p>Выбрать товары: <a href="{% url 'login' %}">Войти</a>.</p>
+</div>
 {% endblock %}

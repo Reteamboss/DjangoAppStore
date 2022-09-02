@@ -45,101 +45,85 @@
                     {% endfor %}
 
                 </ul>
-                <form action="{% url 'cart:delete_all' %}"
-                      method="post">
-                    {% csrf_token %}
-                    <input type="submit" class="btn btn-secondary" value="Очистить корзину">
-                </form>
-
+                <table>
+                    <tr>
+                        <td>
+                            <form action="{% url 'cart:delete_all' %}"
+                                  method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="btn btn-secondary" value="Очистить корзину">
+                            </form>
+                        </td>
+                        <td>
+                            <div><a class="btn btn-secondary" role="button" href="{% url 'index' %}">Продолжить
+                                покупки</a></div>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
         <div class="p-2 col-sm">
 
             <ul class="list-group mb-3">
                 <span class="text-muted"><h4>Детали заказа: </h4></span>
-                <span class="text-muted"><h4>Получатель: </h4></span>
                 <form class="card p-2" action="{% url 'cart:order' %}" method="post">
                     {% csrf_token %}
 
                     <table>
-            <tr>
-                <td class="form-text text-muted"><label>Введите имя: </label></td>
-                <td><input type="text" name="first_name"/></td>
-            </tr>
-            <tr>
-                <td class="form-text text-muted"> <label>Введите фамилию: </label></td>
-                <td><input type="text" name="last_name"/></td>
-
-            </tr>
                         <tr>
-                <td class="form-text text-muted"> <label>Введите фамилию: </label></td>
-                <td><input type="text" name="last_name"/></td>
-
-            </tr>
+                            <td class="form-text text-muted"><label>Имя получателя: {{ first_name }} </label></td>
+                        </tr>
                         <tr>
-                <td class="form-text text-muted"> <label>Введите фамилию: </label></td>
-                <td><input type="text" name="last_name"/></td>
+                            <td class="form-text text-muted"><label>Фамилия получателя: {{ last_name }} </label></td>
+                        </tr>
+                        <tr>
+                            <td class="form-text text-muted"><label>Номер телефона: {{ phone }} </label></td>
 
-            </tr>
+                        </tr>
+                        <tr>
+                            <td class="form-text text-muted"><label>Адрес: {{ address }} </label></td>
+                        </tr>
 
-        </table>
+                    </table>
+                    <table>
+                        <tr>
+                            <td><strong>Выберите способ доставки</strong></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="radio" id="contactChoice1"
+                                       name="type1" value="Самовывоз">
+                                <label for="contactChoice1">Самовывоз</label></td>
+                            <td>
 
-                    <p>
-                        <label>Телефон для связи: </label>
-                        <input type="text" name="phone"/>
-                    </p>
+                                <input type="radio" id="contactChoice2"
+                                       name="type1" value="Доставка">
+                                <label for="contactChoice2">Доставка курьером</label></td>
+                        </tr>
+                        <tr>
+                            <td><label><strong>Дата доставки: </strong></label></td>
+                        </tr>
+                        <tr>
+                            <td><input type="date" name="dateofdelivery"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Выберите способ оплаты:</strong></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" id="contactChoice3"
+                                       name="type2" value="Наличные">
+                                <label for="contactChoice1">Наличными</label></td>
+                            <td><input type="radio" id="contactChoice4"
+                                       name="type2" value="Карта курьеру">
+                                <label for="contactChoice2">Картой курьеру</label></td>
+                        </tr>
 
-
-                    <p>Выберите способ доставки</p>
-                    <div>
-                        <input type="radio" id="contactChoice1"
-                               name="type1" value="Самовывоз">
-                        <label for="contactChoice1">Самовывоз</label>
-
-                        <input type="radio" id="contactChoice2"
-                               name="type1" value="Доставка">
-                        <label for="contactChoice2">Доставка курьером</label>
-
-                        <span class="text-muted"><h4>Адрес доставки: </h4></span></p>
-
-                        <p>
-                            <label>Город: </label>
-                            <input type="text" name="city"/>
-                        </p>
-                        <p>
-                            <label>Улица: </label>
-                            <input type="text" name="street"/>
-                        </p>
-                        <p>
-                            <label>Дом: </label>
-                            <input type="text" name="house"/>
-                        </p>
-                        <p>
-                            <label>Квартира: </label>
-                            <input type="text" name="flat"/>
-                        </p>
-                        <p>
-                            <label>Дата доставки: </label>
-                            <input type="date" name="dateofdelivery"/>
-                        </p>
-
-
-                        <p>Выберите способ оплаты: </p>
-                        <div>
-                            <input type="radio" id="contactChoice3"
-                                   name="type2" value="Наличные">
-                            <label for="contactChoice1">Наличными</label>
-
-                            <input type="radio" id="contactChoice4"
-                                   name="type2" value="Карта курьеру">
-                            <label for="contactChoice2">Картой курьеру</label>
-                            <div class="row">
-                                <div class="col">
-                                    <button type="submit" class="btn btn-secondary">Заказать</button>
-                                </div>
-                                <div><a class="btn btn-secondary" role="button" href="{% url 'index' %}">Продолжить
-                                    покупки</a></div>
+                    </table>
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" class="btn btn-secondary">Заказать</button>
                             </div>
+
                 </form>
         </div>
     </div>

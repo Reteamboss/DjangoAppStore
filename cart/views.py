@@ -37,7 +37,7 @@ def add_to_cart(request):
 
 def view_cart(request):
     path = request.GET.get('next')
-
+    user = request.user
     context = {
         'next': path,
     }
@@ -63,6 +63,12 @@ def view_cart(request):
 
         context['total_price'] = sum_total
         context['cart'] = cart
+        context['first_name'] = user.first_name
+        context['last_name'] = user.last_name
+        context['phone'] = user.phone
+        address = f"г.{user.city}, ул.{user.street}, д.{user.house}, кв.{user.flat}"
+
+        context['address'] = address
 
     return render(request, 'cart.html', context)
 
@@ -71,23 +77,19 @@ def view_cart(request):
 def view_order(request):
     if request.method == 'POST':
         user_id = request.user.pk
-        customer = User.objects.get(pk=user_id)
-
+        user = User.objects.get(pk=user_id)
 
         cart = request.session['cart']
 
         if len(cart) > 0:
-            order = Order.objects.create(customer=customer)
-            order.first_name_customer = request.POST.get("first_name")
-            order.last_name_customer = request.POST.get("last_name")
-            order.city = request.POST.get("city")
-            order.street = request.POST.get("street")
-            order.house = request.POST.get("house")
-            order.flat = request.POST.get("flat")
-            order.phone = request.POST.get("phone")
-            order.paymentmethod = request.POST.get("type1")
-            order.deliverytype = request.POST.get("type2")
+            order = Order.objects.create(customer=user)
+
+
+            order.paymentmethod = request.POST.get("type2")
+            order.deliverytype = request.POST.get("type1")
             order.dateofdelivery = request.POST.get("dateofdelivery")
+            order.address = f"г.{user.city}, ул.{user.street}, д.{user.house}, кв.{user.flat}"
+            order.phone = user.phone
 
 
 

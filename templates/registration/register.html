@@ -4,14 +4,18 @@
 
 {% block content %}
 {% if user.is_anonymous %}
+<div class="row">
+    <div class="col-md-8 mx-auto">
+<div class=" list-group-item ">
 <form method="post" action="{% url 'account:register' %}">
 
 
     {% csrf_token %}
 
     <h1>Создать аккаунт</h1>
+
     <label for="inputEmail">Email</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email" name="email"
+    <input type="email" id="inputEmail" class="form-control col-6" placeholder="Email" name="email"
            value="" required="" autofocus="" data-cip-id="inputEmail">
     <label for="inputPassword">Password</label>
     <input type="password" id="inputPassword" placeholder="Пароль"
@@ -21,9 +25,12 @@
 
     <button class="btn" type="submit">Создать</button>
 </form>
+    </div>
+        </div>
+    </div>
 {% else %}
 <p class="text-success">{{ user|upper}}, Вы уже зарегистрированы. <br> <a href="{{ '/' }}">Перейти на главную</a></p>
 {% endif %}
-<p class="mt-5 mb-3 text-muted">Apple Store</p>
+
 
 {% endblock %}
