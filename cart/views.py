@@ -11,7 +11,7 @@ from catalog.models import Product
 from django.core.mail import send_mail, BadHeaderError
 from appleshop.settings import RECIPIENTS_EMAIL, DEFAULT_FROM_EMAIL
 
-
+@login_required(login_url='/accounts/login/')
 def add_to_cart(request):
     path = request.GET.get('next')
 
@@ -34,7 +34,7 @@ def add_to_cart(request):
     request.session.modified = True
     return redirect(path)
 
-
+@login_required(login_url='/accounts/login/')
 def view_cart(request):
     path = request.GET.get('next')
     user = request.user

@@ -5,6 +5,7 @@
 {% block content %}
 <div class="alert alert-success" role="alert">
     <h1>Вы успешно зарегистрировались! </h1>
-    <p>Выбрать товары: <a href="{% url 'login' %}">Войти</a>.</p>
+    <p>Добавьте информацию о себе! <a href="{% url 'personal_account:change_info' %}">Добавить</a>.</p>
 </div>
+
 {% endblock %}

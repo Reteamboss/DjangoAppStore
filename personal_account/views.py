@@ -6,31 +6,32 @@ from catalog.models import Product
 from .forms import CustomerInfo
 from django.http import HttpResponseRedirect
 
-
+@login_required(login_url='/accounts/login/')
 def personal_account_orders_view(request):
 
 
     context = {}
     user_id = request.user.pk
-    order_list = Order.objects.filter(customer=user_id).values('id','dateofdelivery','created','products','total_price')
+    order_dict = Order.objects.filter(customer=user_id).values('id','dateofdelivery','created','products','total_price')
 
 
-    context['order_list'] = order_list
+    context['order_list'] = order_dict
     prodlist = []
-    for order in order_list:
+    for order in order_dict:
         prod = Product.objects.get(pk=order['products'])
         prodlist.append(prod)
     context['user_id'] = user_id
     # context['prodlist'] = prodlist
     return render(request, 'personal_orders.html', context)
 
+@login_required(login_url='/accounts/login/')
 def personal_info(request):
     context = {}
     user = request.user
     context['user'] = user
     return render(request, 'personal_info.html',context=context)
 
-
+@login_required(login_url='/accounts/login/')
 def change_info(request):
     user_id = request.user.pk
     user = User.objects.get(pk=user_id)
