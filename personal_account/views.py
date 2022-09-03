@@ -12,8 +12,7 @@ def personal_account_orders_view(request):
 
     context = {}
     user_id = request.user.pk
-    customer = User.objects.get(pk=user_id)
-    order_list = Order.objects.filter(customer=customer).values('id','dateofdelivery','created','products','total_price')
+    order_list = Order.objects.filter(customer=user_id).values('id','dateofdelivery','created','products','total_price')
 
 
     context['order_list'] = order_list
@@ -21,8 +20,8 @@ def personal_account_orders_view(request):
     for order in order_list:
         prod = Product.objects.get(pk=order['products'])
         prodlist.append(prod)
-
-    context['prodlist'] = prodlist
+    context['user_id'] = user_id
+    # context['prodlist'] = prodlist
     return render(request, 'personal_orders.html', context)
 
 def personal_info(request):
