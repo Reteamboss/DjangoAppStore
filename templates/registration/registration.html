@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}Регистрация{% endblock %}
 
 
 
@@ -12,18 +13,19 @@
 
     {% csrf_token %}
 
-    <h1>Создать аккаунт</h1>
+    <h2>Регистрация</h2>
+    <table><tr>
+    <td><label for="inputEmail">Email:</label></td>
+    <td colspan="3"><input type="email" id="inputEmail" class="form-control col-6" placeholder="Email" name="email"
+           value="" required="" autofocus="" data-cip-id="inputEmail"></td></tr>
+    <tr><td><label for="inputPassword">Пароль</label></td>
+    <td><input type="password" id="inputPassword" placeholder="Пароль"
+           name="password" required="" data-cip-id="inputPassword"></td>
+    <td><input type="password" id="inputPassword" placeholder="Повторите пароль"
+           name="password2" required="" data-cip-id="inputPassword"></td></tr>
 
-    <label for="inputEmail">Email</label>
-    <input type="email" id="inputEmail" class="form-control col-6" placeholder="Email" name="email"
-           value="" required="" autofocus="" data-cip-id="inputEmail">
-    <label for="inputPassword">Password</label>
-    <input type="password" id="inputPassword" placeholder="Пароль"
-           name="password" required="" data-cip-id="inputPassword">
-    <input type="password" id="inputPassword" placeholder="Повторите пароль"
-           name="password2" required="" data-cip-id="inputPassword">
-
-    <button class="btn" type="submit">Создать</button>
+    <tr><td><button class="btn" type="submit">Создать</button></td></tr>
+    </table>
 </form>
     </div>
         </div>

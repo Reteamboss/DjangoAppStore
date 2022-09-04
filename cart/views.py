@@ -84,7 +84,8 @@ def view_order(request):
         if len(cart) > 0:
             order = Order.objects.create(customer=user)
 
-
+            order.last_name_customer = user.last_name
+            order.first_name_customer = user.first_name
             order.paymentmethod = request.POST.get("type2")
             order.deliverytype = request.POST.get("type1")
             order.dateofdelivery = request.POST.get("dateofdelivery")

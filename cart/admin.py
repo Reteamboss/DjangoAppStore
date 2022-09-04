@@ -13,7 +13,7 @@ class ProductsInOrderInline(admin.TabularInline):
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
     ordering = ('created',)
-    list_display = ('customer','total_price', 'created','address','phone')
+    list_display = ('id','first_name_customer','last_name_customer','customer','total_price', 'created','address','phone')
 
     inlines = (ProductsInOrderInline,)
 
