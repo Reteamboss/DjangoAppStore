@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block title %} Изменить данные {% endblock %}
+
+{% block content %}
+
+{% include 'sidebar.html' %}
+<div class="list-group-item col-6 ml-3">
+<h3>Логин: {{ user }}</h3>
+
+<form method="post" action="{% url 'personal_account:change_info' %} ">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <td class="form-text text-muted">{{ form.first_name.label_tag }}</td>
+                <td>{{ form.first_name }}</td>
+            </tr>
+            <tr>
+                <td class="form-text text-muted"> {{ form.last_name.label_tag }}</td>
+                <td>{{ form.last_name }}</td>
+            </tr>
+          <tr>
+                <td class="form-text text-muted"> {{ form.phone.label_tag }}</td>
+                <td>{{ form.phone }}</td>
+            </tr>
+          <tr>
+                <td class="form-text text-muted"> {{ form.city.label_tag }}</td>
+                <td>{{ form.city }}</td>
+            </tr>
+          <tr>
+                <td class="form-text text-muted"> {{ form.street.label_tag }}</td>
+                <td>{{ form.street }}</td>
+            </tr>
+          <tr>
+                <td class="form-text text-muted"> {{ form.house.label_tag }}</td>
+                <td>{{ form.house }}</td>
+            </tr>
+          <tr>
+                <td class="form-text text-muted"> {{ form.flat.label_tag }}</td>
+                <td>{{ form.flat }}</td>
+            </tr>
+        </table>
+  <input type="submit" class="btn btn-primary" value="Сохранить"/>
+</form>
+</div>
+{% endblock %}

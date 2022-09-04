@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load bootstrap3 %}
+{% block title %}Результат поиска{% endblock %}
+
+{% block content %}
+{% block page %}
+<h1>Список продуктов по результатам запроса "{{ question }}"</h1>
+{% if search_list %}
+<ul>
+    <div class="row">
+    {% for product in search_list %}
+
+        <div class="col-5">
+    <li class="list-group-item">
+        <img src="{{ product.image.url }}" width="120">
+        <a href="{{ product.get_absolute_url }}">{{ product.title }}</a>
+    </li>
+        </div>
+    {% endfor %}
+        </div>
+    {% bootstrap_pagination search_list url=last_question %}
+</ul>
+
+    {% else %}
+        <div class="alert alert-dark" role="alert">
+            <p>В базе нет данных!</p>
+        </div>
+    {% endif %}
+{% endblock %}
+{% endblock %}

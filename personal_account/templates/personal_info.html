@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %} Личная информация {% endblock %}
+
+
+{% block content %}
+
+{% include 'sidebar.html' %}
+{% if user.is_authenticated %}
+<div class="list-group-item col-6 ml-3">
+    <h3>Личная информация: </h3>
+    <p>Логин: {{ user }}</p>
+    <p>Адрес доставки:</p>
+    <p>Ваше имя: {{ user.first_name }}</p>
+    <p>Ваша фамилия: {{ user.last_name }}</p>
+    <p>Номер телефона: {{ user.phone }}</p>
+    <p>Город: {{ user.city }}</p>
+    <p>Улица: {{ user.street }}</p>
+    <p>Дом: {{ user.house }}</p>
+    <p>Квартира: {{ user.flat }}</p>
+    <a href=" {% url 'personal_account:change_info' %}">Изменить</a>
+</div>
+{% else %}
+<div class="col-lg-6 col-md-9 col-sm-12 order-md-2 mb-4 mx-auto">
+    <h4 class="text-muted text-center">Вы не авторизованы</h4>
+</div>
+{% endif %}
+
+{% endblock %}

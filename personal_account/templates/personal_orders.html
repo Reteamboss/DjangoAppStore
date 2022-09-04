@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %} Личный кабинет {% endblock %}
+
+
+{% block content %}
+{% include 'sidebar.html' %}
+
+
+{% if not order_list %}
+
+<div class="col-lg-6 col-md-9 col-sm-12 order-md-2 mb-4 mx-auto">
+    <h4 class="text-muted text-center">У вас еще не было заказов</h4>
+</div>
+
+{% else %}
+<div class="text-muted col-md-8 mx-auto"><h4>Ваши заказы: </h4></div>
+{% for order in order_list %}
+<ul class=" mb-3 mx-auto">
+    <li class="list-group-item d-flex justify-content-between lh-condensed">
+        <div class="d-flex flex-row">
+
+            <div class="p-2"></div>
+            <div class=" p-2 d-flex flex-column">
+                <div class="p-2"><h6>Заказ №: {{ order.id }}</h6></div>
+                <div class="p-2"><small><strong>Дата заказа:</strong> {{ order.created }} </small></div>
+                <div class="p-2"><small><strong>Дата доставки:</strong> {{ order.dateofdelivery }}</small></div>
+                <div class="p-2"><small><strong>Общая цена:</strong> {{ order.total_price }}</small></div>
+                <a href = " ">Подробнее</a>
+            </div>
+        </div>
+    </li>
+</ul>
+{% endfor %}
+{% endif %}
+
+{% endblock %}
