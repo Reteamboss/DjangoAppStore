@@ -13,7 +13,7 @@ python3 manage.py migrate
 ```
 **3.Загрузите тестовые данные в базу:**
 ```
-python manage.py loaddata fixtures.json
+python3 manage.py loaddata fixtures.json
 ```
 **4.Запустите тестовый сервер:**
 ```
